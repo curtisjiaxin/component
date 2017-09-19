@@ -19,10 +19,10 @@ import { Component } from '@angular/core';
 @Component({
      selector: 'ksc-bread-crumbs',
      template: `<ul class="bread-crumb-ul">
-              <ng-container *ngFor="let item of data">
-                <li (click)="item.bindFunc" *ngIf="item.isActive"><a href={{item.href}}>{{item.name}}</a></li>
-              </ng-container>
-             </ul>`,
+                  <ng-container *ngFor="let item of data">
+                    <li *ngIf="item.isActive"><a href={{item.href}}>{{item.name}}</a></li>
+                  </ng-container>
+                </ul>`,
    styleUrls: ['./ksc-bread-crumbs.component.scss']
 })
 ```
@@ -52,12 +52,77 @@ import { Component, Input } from '@angular/core';
 
 ```ts
 export class KscBreadCrumbsComponent {
-  private _data: any;
+  private _data: KSCBreadCrumbsModel[];
   constructor() { }
   public get data() {
     return this._data;
   }
   ```
+  
+## module
+Create a 'ksc-bread-crumbs.module.ts' file
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { KSCBreadCrumbsComponent } from './ksc-bread-crumbs.component';
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    KSCBreadCrumbsComponent
+  ],
+  exports: [KSCBreadCrumbsComponent]
+})
+export class KSCBreadCrumbsModule { }
+
+```
+The`` NgModule``,``CommonModule`` is must be import, beside of these you have import ``KSCBreadCrumbsComponent``
+
+and then you should ``declaraction``, ``imports`` and ``exports``them.
+
+Only if you write ``export class KSCBreadCrumbsModule { }`` to export the module ,this component can be use by others.
+
+## model
+Create a 'ksc-bread-crumbs.model.ts' file
+```
+ export class KSCBreadCrumbsModel {
+  private _href: string;
+  private _name: string;
+  private _isActive: boolean;
+  
+  constructor(href?: string, name?: string, isActive?: boolean) {
+    this.href = href;
+    this.name = name;
+    this.isActive = isActive;
+  }
+```
+Define variable and constructor and generate set and get methods.
+```
+ public set href(value: string) {
+    this._href = value;
+  }
+
+  public get href(): string {
+    return this._href;
+  }
+  public set name(value: string) {
+    this._name = value;
+  }
+
+  public get name(): string {
+    return this._name;
+  }
+  public set isActive(value: boolean) {
+    this._isActive = value;
+  }
+
+  public get isActive(): boolean {
+    return this._isActive;
+  }
+```
+Those methods can be used by All.
 ## SCSS
 ```
  $bread-crumbs-li-font-size : 12px;
@@ -68,25 +133,21 @@ export class KscBreadCrumbsComponent {
   padding: 12px 0px;
   list-style: none;
   font-size: $bread-crumbs-li-font-size !important;
-}
-
-.bread-crumb-ul >li {
-  display: inline ;
-}
-
-.bread-crumb-ul >li >a {
-  text-decoration: underline;
-}
-
-.bread-crumb-ul >li:last-child >a {
-  color: $bread-crumbs-li-corrent-color;
-  text-decoration: none;
-}
-
-.bread-crumb-ul >li + li:before {
-  padding: 8px;
-  color: $bread-crumbs-li-corrent-color;
-  content: "\003E";
+ >li {
+    display: inline;
+    >a {
+      text-decoration: underline;
+    }
+    &:last-child>a {
+      color: $bread-crumbs-li-current-color;
+      text-decoration: none;
+    }
+    +li:before {
+      padding: 8px;
+      color: $bread-crumbs-li-current-color;
+      content: "\003E";
+    }
+  }
 }
 ```
 You can define a size variable like `` $bread-crumbs-li-font-size : 12px;``,
