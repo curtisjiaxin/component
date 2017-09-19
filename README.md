@@ -26,6 +26,7 @@ import { Component } from '@angular/core';
    styleUrls: ['./ksc-bread-crumbs.component.scss']
 })
 ```
+____
 
 Write the HTML in ``template`` , and create scss file and write the route in`` styleUrls:[`  `]``
 
@@ -46,7 +47,7 @@ import { Component, Input } from '@angular/core';
   } 
   
 ```
-
+____
  then `` export`` the ``class`` of KscBreadCrumbsComponent to use to others.
 
 ```ts
