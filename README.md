@@ -2,7 +2,7 @@ Bread Crumbs Component
 ===
 
 Bread crumds Navigation is also called breadcrumbs.
-Routing is another name for navigation. The router is the mechanism for navigating from view to view.
+The bread crumd is the mechanism for navigating from view to view.
 
 
 ### grammar:
