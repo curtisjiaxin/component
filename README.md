@@ -6,9 +6,9 @@ Routing is another name for navigation. The router is the mechanism for navigati
 
 
 #### grammar:
- [Angular](https://angular.io),
- [Type Script](http://www.typescriptlang.org/),
- [SCSS](http://sass-lang.com/)
++ [Angular](https://angular.io),
++ [Type Script](http://www.typescriptlang.org/),
++ [SCSS](http://sass-lang.com/)
 
 # KscBreadCrumbsComponent
 
